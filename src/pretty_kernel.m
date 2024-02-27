@@ -5,5 +5,5 @@ F = chebop(@(u) fred(G, u));
 l = 0.01;
 gaussian_01 = chebfun2(@(x,y) exp(-(x-y).^2/(2*l^2)));
 
-n = 50;
+n = 100;
 Fn = nystrom(K, gaussian_01, n);

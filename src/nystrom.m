@@ -27,6 +27,5 @@ R = R(1:n,1:n);
 Q = Q(:,1:n);
 
 % Compute approximation
-%Fn = (Ax / R)*(Q'*Ay'); not working in chebfun :(
-Fn = (Ax * pinv(R))*(Q'*Ay');
+Fn = (R'\Ax')'*(Q'*Ay');
 end
