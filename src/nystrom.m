@@ -13,9 +13,10 @@ p = floor(0.5*n);
 X = gaussianprocess(K, n);
 Y = gaussianprocess(K, n+p);
 
+
 % Sample A at X and Y
-Ax = F(X);
-Ay = F(Y);
+Ax = F*X;
+Ay = F*Y;
 Axy = Y'*Ax;
 
 % Compute rank n chebfun2 approximation to the kernel
@@ -26,6 +27,6 @@ R = R(1:n,1:n);
 Q = Q(:,1:n);
 
 % Compute approximation
-%Fn = (Ax / R)*(Q'*Ay');
+%Fn = (Ax / R)*(Q'*Ay'); not working in chebfun :(
 Fn = (Ax * pinv(R))*(Q'*Ay');
 end
