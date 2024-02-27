@@ -13,7 +13,6 @@ p = floor(0.5*n);
 X = gaussianprocess(K, n);
 Y = gaussianprocess(K, n+p);
 
-
 % Sample A at X and Y
 Ax = F*X;
 Ay = F*Y;
