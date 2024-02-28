@@ -61,7 +61,8 @@
 \pgfplotsset{every axis/.append style={
 			axis on top=true,
 			label style={font=\Large},
-            tick label style={font=\large} 
+            tick label style={font=\large},
+            title style={font=\Large} 
 			}}
 %\pgfplotsset{every tick label/.append style={font=\large}}
 
@@ -69,25 +70,13 @@
 \resizebox{\textwidth}{!}{
 
 	\begin{tikzpicture}
+		
+\begin{scope}[xshift=0cm]
 		\input{pretty_kernel.tikz}
 		\node at (-1,5.7) {\Large(a)};
+		\end{scope}
 		
 		\begin{scope}[xshift=9.5cm]
-		\input{pretty_kernel_1.tikz}
-		\node at (-1,5.7) {\Large(b)};
-		\end{scope}
-		
-		\begin{scope}[yshift=-7cm]
-		\input{pretty_kernel_01.tikz}
-		\node at (-1,5.7) {\Large(c)};
-		\end{scope}
-		
-		\begin{scope}[xshift=9.5cm,yshift=-7cm]
-		\input{pretty_kernel_001.tikz}
-		\node at (-1,5.7) {\Large(d)};
-		\end{scope}
-		
-		\begin{scope}[yshift=-14cm]
 			\begin{semilogyaxis}[
 				grid,
 				%minor xtick={2,3,4,5,6,7,8,9,11,12,13,14},
@@ -117,8 +106,24 @@
 				\addlegendentry{\Large $\ell=0.1$}
 				\addlegendentry{\Large $\ell=0.01$}
 			\end{semilogyaxis}
-			\node at (-1.5,5.7) {\Large (e)};
+			\node at (-1.5,5.7) {\Large (b)};
+		\end{scope}		
+		
+		\begin{scope}[xshift=0cm,yshift=-8cm]
+		\input{pretty_kernel_1.tikz}
+		\node at (-1,5.7) {\Large(c)};
 		\end{scope}
+		
+		\begin{scope}[xshift=9.5cm,yshift=-8cm]
+		\input{pretty_kernel_01.tikz}
+		\node at (-1,5.7) {\Large(d)};
+		\end{scope}
+		
+		\begin{scope}[xshift=19cm,yshift=-8cm]
+		\input{pretty_kernel_001.tikz}
+		\node at (-1,5.7) {\Large(e)};
+		\end{scope}
+		
 	\end{tikzpicture}
 	}
 \end{document}

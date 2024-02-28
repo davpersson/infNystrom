@@ -11,6 +11,7 @@
 	 	 xlabel = {$x$},
 	 	 ylabel = {$y$},
 	 	 ylabel style={rotate=-90},
+	 	 title={$\ell=0.1$},
 	 	 colorbar,
 	 	 colormap name=parula,
 	 	 colorbar style = {%,

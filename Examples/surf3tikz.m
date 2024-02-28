@@ -14,6 +14,7 @@ function [pt_point_positions, tikz_support_points, cdata_limits] = surf3tikz(h_f
 %   h_figure: Figure handle containing the figure plot. Ideally also contains a colorbar.
 %   export_name: Base filename of the exported tikz and png file the function writes to
 %   cfg: optional config struct
+%       .axis_option: string of options to add to axis
 %      .colorbar_log: plot colorbar on a logscale
 %      .export_dpi: dpi of exported png file, default: 300 dpi
 %      .write_png: boolean to optionally suppress png output, default: true
@@ -582,6 +583,10 @@ if (cfg.write_tikz)
         fprintf(tfile_h, '\t \t zlabel = {%s},\n', label_z_txt);
     end
     
+    if isfield(cfg, 'axis_option')
+        fprintf(tfile_h, '\t \t %s,\n', cfg.axis_option);
+    end
+
     % colorbar
     if has_colorbar
         fprintf(tfile_h, '\t \t colorbar,\n');

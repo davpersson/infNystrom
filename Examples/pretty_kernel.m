@@ -17,11 +17,11 @@ colormap parula
 xlabel("$x$",Interpreter="latex")
 ylabel("$y$",Interpreter="latex")
 set(gca,'TickLabelInterpreter','latex')
-%cfg = struct('colorbar_log',true);
-surf3tikz(gcf, 'fig/pretty_kernel')
+cfg = struct('axis_option',"title={Exact kernel}");
+surf3tikz(gcf, 'fig/pretty_kernel',cfg)
 
 %% l = 1
-n = 50;
+n = 40;
 Fn = nystrom_psd(K, gaussian_1, n);
 fprintf("MT paper: %.2e\n", norm(K-Fn))
 surf(Fn)
@@ -32,10 +32,11 @@ clim([0,1])
 colormap parula
 xlabel("$x$",Interpreter="latex")
 ylabel("$y$",Interpreter="latex")
-surf3tikz(gcf, 'fig/pretty_kernel_1')
+cfg = struct('axis_option',"title={$\ell=1$}");
+surf3tikz(gcf, 'fig/pretty_kernel_1', cfg)
 
 %% l = 0.1
-n = 50;
+n = 40;
 Fn = nystrom_psd(K, gaussian_01, n);
 fprintf("MT paper: %.2e\n", norm(K-Fn))
 surf(Fn)
@@ -46,10 +47,11 @@ clim([0,1])
 colormap parula
 xlabel("$x$",Interpreter="latex")
 ylabel("$y$",Interpreter="latex")
-surf3tikz(gcf, 'fig/pretty_kernel_01')
+cfg = struct('axis_option',"title={$\ell=0.1$}");
+surf3tikz(gcf, 'fig/pretty_kernel_01', cfg)
 
 %% l = 0.01
-n = 50;
+n = 40;
 Fn = nystrom_psd(K, gaussian_001, n);
 fprintf("MT paper: %.2e\n", norm(K-Fn))
 surf(Fn)
@@ -60,7 +62,8 @@ clim([0,1])
 colormap parula
 xlabel("$x$",Interpreter="latex")
 ylabel("$y$",Interpreter="latex")
-surf3tikz(gcf, 'fig/pretty_kernel_001')
+cfg = struct('axis_option',"title={$\ell=0.01$}");
+surf3tikz(gcf, 'fig/pretty_kernel_001', cfg)
 
 %% Convergence
 
