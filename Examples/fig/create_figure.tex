@@ -59,28 +59,65 @@
 \begin{document}
 
 \pgfplotsset{every axis/.append style={
-			axis on top=true}}
+			axis on top=true,
+			label style={font=\Large},
+            tick label style={font=\large} 
+			}}
+%\pgfplotsset{every tick label/.append style={font=\large}}
 
 \tikzsetnextfilename{example_1}
 \resizebox{\textwidth}{!}{
 
 	\begin{tikzpicture}
 		\input{pretty_kernel.tikz}
-		\node at (-1,5.7) {(a)};
+		\node at (-1,5.7) {\Large(a)};
 		
 		\begin{scope}[xshift=9.5cm]
 		\input{pretty_kernel_1.tikz}
-		\node at (-1,5.7) {(b)};
+		\node at (-1,5.7) {\Large(b)};
 		\end{scope}
 		
 		\begin{scope}[yshift=-7cm]
 		\input{pretty_kernel_01.tikz}
-		\node at (-1,5.7) {(c)};
+		\node at (-1,5.7) {\Large(c)};
 		\end{scope}
 		
 		\begin{scope}[xshift=9.5cm,yshift=-7cm]
 		\input{pretty_kernel_001.tikz}
-		\node at (-1,5.7) {(d)};
+		\node at (-1,5.7) {\Large(d)};
+		\end{scope}
+		
+		\begin{scope}[yshift=-14cm]
+			\begin{semilogyaxis}[
+				grid,
+				%minor xtick={2,3,4,5,6,7,8,9,11,12,13,14},
+				%minor ytick={1e-1,1,1e2,1e3,1e5,1e6,1e8,1e9},
+				xtick={5,20,40,60,80,100},
+				%ytick = {1e-2,1e0,1e2,1e4},
+				%yticklabels = {$10^{-2}$, $10^{0}$, $10^{2}$, $10^{4}$},
+				enlargelimits = false,
+				xmin = 5,
+				xmax = 100,
+				ymin = 1e-15,
+				ymax = 1,
+				height = 207pt,
+				width = 506pt,
+				xlabel = {Rank $k$},
+				ylabel = {Approximation error},
+				axis on top=false,
+				legend cell align={left},
+				legend pos=south west
+				]
+				\addplot+[solid, mark = none smooth, black,line width=0.75mm] table[col sep = comma, x index=0, y index=1]{error_pretty.csv};
+				\addplot+[solid, mark = none smooth, myblue,line width=0.75mm] table[col sep = comma, x index=0, y index=2]{error_pretty.csv};
+				\addplot+[solid, mark = none smooth, myred,line width=0.75mm] table[col sep = comma, x index=0, y index=3]{error_pretty.csv};
+				\addplot+[solid, mark = none smooth, mygreen,line width=0.75mm] table[col sep = comma, x index=0, y index=4]{error_pretty.csv};
+				\addlegendentry{\Large Optimal}
+				\addlegendentry{\Large $\ell=1$}
+				\addlegendentry{\Large $\ell=0.1$}
+				\addlegendentry{\Large $\ell=0.01$}
+			\end{semilogyaxis}
+			\node at (-1.5,5.7) {\Large (e)};
 		\end{scope}
 	\end{tikzpicture}
 	}

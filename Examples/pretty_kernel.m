@@ -14,6 +14,8 @@ axis square
 colorbar
 clim([0,1])
 colormap parula
+xlabel("$x$",Interpreter="latex")
+ylabel("$y$",Interpreter="latex")
 set(gca,'TickLabelInterpreter','latex')
 %cfg = struct('colorbar_log',true);
 surf3tikz(gcf, 'fig/pretty_kernel')
@@ -28,6 +30,8 @@ axis square
 colorbar
 clim([0,1])
 colormap parula
+xlabel("$x$",Interpreter="latex")
+ylabel("$y$",Interpreter="latex")
 surf3tikz(gcf, 'fig/pretty_kernel_1')
 
 %% l = 0.1
@@ -40,6 +44,8 @@ axis square
 colorbar
 clim([0,1])
 colormap parula
+xlabel("$x$",Interpreter="latex")
+ylabel("$y$",Interpreter="latex")
 surf3tikz(gcf, 'fig/pretty_kernel_01')
 
 %% l = 0.01
@@ -52,13 +58,15 @@ axis square
 colorbar
 clim([0,1])
 colormap parula
+xlabel("$x$",Interpreter="latex")
+ylabel("$y$",Interpreter="latex")
 surf3tikz(gcf, 'fig/pretty_kernel_001')
 
 %% Convergence
 
 % Compute svd
 [U,S,~] = svd(K);
-
+S = diag(S);
 Optimal = [];
 Error_1 = [];
 Error_01 = [];
@@ -68,14 +76,14 @@ N = [];
 for i = 5:5:100
     sprintf("%d",i)
     
-    N = [N, i];
+    N = [N; i];
     % Compute optimal
     Optimal = [Optimal; norm(S(i+1:end))];
     Fn = nystrom_psd(K, gaussian_1, i);
     Error_1 = [Error_1; norm(K-Fn)];
     Fn = nystrom_psd(K, gaussian_01, i);
-    Error_01 = [Error_1; norm(K-Fn)];
+    Error_01 = [Error_01; norm(K-Fn)];
     Fn = nystrom_psd(K, gaussian_001, i);
-    Error_001 = [Error_1; norm(K-Fn)];
+    Error_001 = [Error_001; norm(K-Fn)];
 end
 writematrix([N,Optimal,Error_1,Error_01,Error_001],"fig/error_pretty.csv")
