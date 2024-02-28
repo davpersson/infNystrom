@@ -54,18 +54,28 @@ clim([0,1])
 colormap parula
 surf3tikz(gcf, 'fig/pretty_kernel_001')
 
+%% Convergence
 
-%%
-n = 100;
-MT = [];
-TSVD = [];
-for i = 1:10
-    sprintf("%d / 10",i)
-    Fn = nystrom_psd(K, gaussian_01, n);
-    MT = [MT, norm(K-Fn)];
+% Compute svd
+[U,S,~] = svd(K);
 
-    Fn = nystrom_psd2(K, gaussian_01, n);
-    TSVD = [TSVD, norm(K-Fn)];
+Optimal = [];
+Error_1 = [];
+Error_01 = [];
+Error_001 = [];
+N = [];
+
+for i = 5:5:100
+    sprintf("%d",i)
+    
+    N = [N, i];
+    % Compute optimal
+    Optimal = [Optimal; norm(S(i+1:end))];
+    Fn = nystrom_psd(K, gaussian_1, i);
+    Error_1 = [Error_1; norm(K-Fn)];
+    Fn = nystrom_psd(K, gaussian_01, i);
+    Error_01 = [Error_1; norm(K-Fn)];
+    Fn = nystrom_psd(K, gaussian_001, i);
+    Error_001 = [Error_1; norm(K-Fn)];
 end
-fprintf("MT paper: %.2e, TSVD: %.2e\n", mean(MT), mean(TSVD))
-
+writematrix([N,Optimal,Error_1,Error_01,Error_001],"fig/error_pretty.csv")
