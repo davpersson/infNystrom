@@ -3,3 +3,17 @@
 *.eps
 
 *.asv
+
+*.aux
+
+*.auxlock
+
+*.log
+
+*.out
+
+*.gz
+
+*.dpth
+
+*.md5

@@ -1,0 +1,87 @@
+\documentclass{article}
+
+% User packages:
+% ======================================================================
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage[hang,nooneline]{subfigure}
+\usepackage[normalem]{ulem}
+\usepackage{color}
+\usepackage{braket}
+\usepackage{hyperref}
+\usepackage{todonotes}
+\usepackage{algorithm}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{shortvrb}
+\usepackage{cprotect}
+\usepackage[noend]{algpseudocode}
+\usepackage{overpic}
+\usepackage{cleveref}
+
+% Tikz plot
+\usepackage{csvsimple}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{colorbrewer}
+
+\definecolor{myblue}{RGB}{0,119,187}
+\definecolor{myred}{RGB}{204,51,17}
+\definecolor{mygreen}{RGB}{0,153,136}
+\definecolor{mypurple}{RGB}{152,78,163}
+\definecolor{myorange}{RGB}{255,127,0}
+\definecolor{mybrown}{RGB}{166,86,40}
+\definecolor{mypink}{RGB}{247,129,191}
+\definecolor{mygrey}{RGB}{153,153,153}
+
+\makeatletter
+
+\usetikzlibrary{external}
+% Comment out the next three lines for faster compilation time
+\usepgfplotslibrary{external}
+\pgfplotsset{compat=newest}
+\tikzexternalize[optimize=false] % or false
+
+\tikzset{external/system call= {lualatex
+                           -enable-write18
+                           -halt-on-error 
+                           -shell-escape 
+                           -synctex=1
+                           -interaction=nonstopmode
+                           -jobname "\image" "\texsource"}}
+
+% Import colormap, see this to export it: https://mirror.apps.cam.ac.uk/pub/tex-archive/graphics/pgf/contrib/pgfplots/doc/pgfplots.pdf#page=545
+\input{parula.tex}
+
+\begin{document}
+
+\pgfplotsset{every axis/.append style={
+			axis on top=true}}
+
+\tikzsetnextfilename{example_1}
+\resizebox{\textwidth}{!}{
+
+	\begin{tikzpicture}
+		\input{pretty_kernel.tikz}
+		\node at (-1,5.7) {(a)};
+		
+		\begin{scope}[xshift=9.5cm]
+		\input{pretty_kernel_1.tikz}
+		\node at (-1,5.7) {(b)};
+		\end{scope}
+		
+		\begin{scope}[yshift=-7cm]
+		\input{pretty_kernel_01.tikz}
+		\node at (-1,5.7) {(c)};
+		\end{scope}
+		
+		\begin{scope}[xshift=9.5cm,yshift=-7cm]
+		\input{pretty_kernel_001.tikz}
+		\node at (-1,5.7) {(d)};
+		\end{scope}
+	\end{tikzpicture}
+	}
+\end{document}

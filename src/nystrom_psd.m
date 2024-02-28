@@ -21,7 +21,7 @@ C = chol(Omega'*Y_nu);
 B = (C'\Y_nu')';
 
 [U,S,~] = svd(B);
-S = max(0,S.^2-nu*eye(n,n));
+S = max(0,S.^2-nu*eye(size(S)));
 
 Fn = U*S*U';
 end

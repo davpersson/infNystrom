@@ -1,0 +1,28 @@
+% created with surf3tikz written by Johannes Schlichenmaier
+% based on surf2TikZ written by Fabian Roos
+	 \begin{axis}[
+	 	 enlargelimits = false,
+	 	 xmin = -1.000000,
+	 	 xmax = 1.000000,
+	 	 ymin = -1.000000,
+	 	 ymax = 1.000000,
+	 	 height = 207pt,
+	 	 width = 207 pt,
+	 	 xlabel = {},
+	 	 ylabel = {},
+	 	 ylabel style={rotate=-90},
+	 	 colorbar,
+	 	 colormap name=parula,
+	 	 colorbar style = {%,
+	 	 	 ylabel = {},
+	 	 	 yticklabel style={/pgf/number format/fixed},
+	 	 },
+	 	 point meta min = 0.000000,
+	 	 point meta max = 1.000000,
+	 ]
+
+	 	 \addplot graphics
+	 	 	 [xmin=-1.000000, xmax=1.000000, ymin=-1.000000, ymax=1.000000]
+	 	 {pretty_kernel_001.png};
+
+	 \end{axis}
