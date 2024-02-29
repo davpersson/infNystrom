@@ -31,7 +31,7 @@ Error_01 = [];
 Error_001 = [];
 N = [];
 
-for i = 5:5:100
+for i = 1:100
     sprintf("%d",i)
     
     N = [N; i];

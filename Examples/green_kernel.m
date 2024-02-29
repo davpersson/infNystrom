@@ -17,7 +17,7 @@ colormap parula
 xlabel("$x$",Interpreter="latex")
 ylabel("$y$",Interpreter="latex")
 set(gca,'TickLabelInterpreter','latex')
-cfg = struct('axis_option',"title={$G_{3/2}$}");
+cfg = struct('axis_option',"title={Green's function}");
 surf3tikz(gcf, 'fig/green',cfg)
 
 %% Convergence
@@ -31,7 +31,7 @@ Error_01 = [];
 Error_001 = [];
 N = [];
 
-for i = 5:5:100
+for i = 1:200
     sprintf("%d",i)
     
     N = [N; i];
@@ -44,4 +44,4 @@ for i = 5:5:100
     Fn = nystrom_psd(K, gaussian_001, i);
     Error_001 = [Error_001; norm(K-Fn)];
 end
-writematrix([N,Optimal,Error_1,Error_01,Error_001],"fig/error_G_32.csv")
+writematrix([N,Optimal,Error_1,Error_01,Error_001],"fig/error_green.csv")

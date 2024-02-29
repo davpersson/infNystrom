@@ -81,11 +81,11 @@
 				grid,
 				%minor xtick={2,3,4,5,6,7,8,9,11,12,13,14},
 				%minor ytick={1e-1,1,1e2,1e3,1e5,1e6,1e8,1e9},
-				xtick={5,20,40,60,80,100},
+				%xtick={5,20,40,60,80,100},
 				%ytick = {1e-2,1e0,1e2,1e4},
 				%yticklabels = {$10^{-2}$, $10^{0}$, $10^{2}$, $10^{4}$},
 				enlargelimits = false,
-				xmin = 5,
+				xmin = 0,
 				xmax = 100,
 				ymin = 1e-15,
 				ymax = 1,
@@ -138,15 +138,15 @@
 		\end{scope}
 		
 		\begin{scope}[xshift=9.5cm]
-			\begin{semilogyaxis}[
+			\begin{loglogaxis}[
 				grid,
 				%minor xtick={2,3,4,5,6,7,8,9,11,12,13,14},
 				%minor ytick={1e-1,1,1e2,1e3,1e5,1e6,1e8,1e9},
-				xtick={5,20,40,60,80,100},
+				%xtick={5,20,40,60,80,100},
 				%ytick = {1e-2,1e0,1e2,1e4},
 				%yticklabels = {$10^{-2}$, $10^{0}$, $10^{2}$, $10^{4}$},
 				enlargelimits = false,
-				xmin = 5,
+				xmin = 1,
 				xmax = 100,
 				ymin = 1e-4,
 				ymax = 1,
@@ -166,7 +166,7 @@
 				\addlegendentry{\Large $\ell=1$}
 				\addlegendentry{\Large $\ell=0.1$}
 				\addlegendentry{\Large $\ell=0.01$}
-			\end{semilogyaxis}
+			\end{loglogaxis}
 			\node at (-1.5,5.7) {\Large (b)};
 		\end{scope}	
 		
@@ -176,15 +176,15 @@
 		\end{scope}
 		
 		\begin{scope}[xshift=9.5cm, yshift=-8cm]
-			\begin{semilogyaxis}[
+			\begin{loglogaxis}[
 				grid,
 				%minor xtick={2,3,4,5,6,7,8,9,11,12,13,14},
 				%minor ytick={1e-1,1,1e2,1e3,1e5,1e6,1e8,1e9},
-				xtick={5,20,40,60,80,100},
+				%xtick={5,20,40,60,80,100},
 				ytick = {1e0,1e-2,1e-4,1e-6,1e-8},
 				%yticklabels = {$10^{-2}$, $10^{0}$, $10^{2}$, $10^{4}$},
 				enlargelimits = false,
-				xmin = 5,
+				xmin = 1,
 				xmax = 100,
 				ymin = 1e-8,
 				ymax = 1,
@@ -204,7 +204,7 @@
 				\addlegendentry{\Large $\ell=1$}
 				\addlegendentry{\Large $\ell=0.1$}
 				\addlegendentry{\Large $\ell=0.01$}
-			\end{semilogyaxis}
+			\end{loglogaxis}
 			\node at (-1.5,5.7) {\Large (d)};
 		\end{scope}	
 		
@@ -214,15 +214,15 @@
 		\end{scope}
 		
 		\begin{scope}[xshift=9.5cm, yshift=-16cm]
-			\begin{semilogyaxis}[
+			\begin{loglogaxis}[
 				grid,
 				%minor xtick={2,3,4,5,6,7,8,9,11,12,13,14},
 				%minor ytick={1e-1,1,1e2,1e3,1e5,1e6,1e8,1e9},
-				xtick={5,20,40,60,80,100},
+				%tick={5,20,40,60,80,100},
 				%ytick = {1e-2,1e0,1e2,1e4},
 				%yticklabels = {$10^{-2}$, $10^{0}$, $10^{2}$, $10^{4}$},
 				enlargelimits = false,
-				xmin = 5,
+				xmin = 1,
 				xmax = 100,
 				ymin = 1e-12,
 				ymax = 1,
@@ -242,9 +242,56 @@
 				\addlegendentry{\Large $\ell=1$}
 				\addlegendentry{\Large $\ell=0.1$}
 				\addlegendentry{\Large $\ell=0.01$}
-			\end{semilogyaxis}
+			\end{loglogaxis}
 			\node at (-1.5,5.7) {\Large (f)};
 		\end{scope}	
+		
+	\end{tikzpicture}
+	}
+	
+	\tikzsetnextfilename{example_green}
+\resizebox{\textwidth}{!}{
+
+	\begin{tikzpicture}
+		
+\begin{scope}[xshift=0cm]
+		\input{green.tikz}
+		\node at (-1,5.7) {\Large(a)};
+		\end{scope}
+		
+		\begin{scope}[xshift=9.5cm]
+			\begin{loglogaxis}[
+				grid,
+				minor xtick={2,3,4,5,6,7,8,9,20,30,40,50,60,70,80,90},
+				%minor ytick={1e-1,1,1e2,1e3,1e5,1e6,1e8,1e9},
+				xtick={1,10,100},
+				xticklabels={$10^0$,$10^1$,$10^2$},
+				%ytick = {1e-2,1e0,1e2,1e4},
+				%yticklabels = {$10^{-2}$, $10^{0}$, $10^{2}$, $10^{4}$},
+				enlargelimits = false,
+				xmin = 1,
+				xmax = 100,
+				ymin = 1e-5,
+				ymax = 1e-1,
+				height = 207pt,
+				width = 506pt,
+				xlabel = {Rank $k$},
+				ylabel = {Approximation error},
+				axis on top=false,
+				legend cell align={left},
+				legend pos=south west
+				]
+				\addplot+[solid, mark = none smooth, black,line width=0.75mm] table[col sep = comma, x index=0, y index=1]{error_green.csv};
+				\addplot+[solid, mark = none smooth, myblue,line width=0.75mm] table[col sep = comma, x index=0, y index=2]{error_green.csv};
+				\addplot+[solid, mark = none smooth, myred,line width=0.75mm] table[col sep = comma, x index=0, y index=3]{error_green.csv};
+				\addplot+[solid, mark = none smooth, mygreen,line width=0.75mm] table[col sep = comma, x index=0, y index=4]{error_green.csv};
+				\addlegendentry{\Large Optimal}
+				\addlegendentry{\Large $\ell=1$}
+				\addlegendentry{\Large $\ell=0.1$}
+				\addlegendentry{\Large $\ell=0.01$}
+			\end{loglogaxis}
+			\node at (-1.5,5.7) {\Large (b)};
+		\end{scope}		
 		
 	\end{tikzpicture}
 	}

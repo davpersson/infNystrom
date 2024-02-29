@@ -70,13 +70,13 @@ surf3tikz(gcf, 'fig/pretty_kernel_001', cfg)
 % Compute svd
 [U,S,~] = svd(K);
 S = diag(S);
-Optimal = [];
-Error_1 = [];
-Error_01 = [];
-Error_001 = [];
-N = [];
+Optimal = [norm(S)];
+Error_1 = [norm(S)];
+Error_01 = [norm(S)];
+Error_001 = [norm(S)];
+N = [0];
 
-for i = 5:5:100
+for i = 1:100
     sprintf("%d",i)
     
     N = [N; i];

@@ -11,7 +11,7 @@
 	 	 xlabel = {$x$},
 	 	 ylabel = {$y$},
 	 	 ylabel style={rotate=-90},
-	 	 title={$G_{3/2}$},
+	 	 title={Green's function},
 	 	 colorbar,
 	 	 colormap name=parula,
 	 	 colorbar style = {%,
