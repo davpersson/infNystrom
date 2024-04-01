@@ -19,6 +19,7 @@ for test_case = 1:5
         F = chebfun2(f);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
+        %Afun = @(X) F*X;
         rank_list = 1:1:100;
         g = @(x) x;
         filename = 'results/pretty_function';
@@ -39,10 +40,12 @@ for test_case = 1:5
         
         f = @(x,y) (1+sqrt(3)*abs(x-y)).*exp(-sqrt(3)*abs(x-y));
         box = [-1 1 -1 1];
-        F = chebfun2(f);
+        %F = chebfun2(f);
+        F = chebfun2(f,[500,500]);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 10:10:100;
+        %Afun = @(X) F*X;
+        rank_list = 1:1:100;
         g = @(x) x;
         filename = 'results/matern32';
         
@@ -60,10 +63,13 @@ for test_case = 1:5
         
         f = @(x,y) (1+sqrt(5)*abs(x-y) + (5/3)*(x-y).^2).*exp(-sqrt(5)*abs(x-y));
         box = [-1 1 -1 1];
-        F = chebfun2(f);
+        %F = chebfun2(f);
+        F = chebfun2(f,[500,500]);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 10:10:100;
+        %Afun = @(X) F*X;
+        Afun = @(X) U_true*(S_true*(U_true'*X));
+        rank_list = 1:1:100;
         g = @(x) x;
         filename = 'results/matern52';
         
@@ -81,10 +87,12 @@ for test_case = 1:5
         
         f = @(x,y) exp(-abs(x-y));
         box = [-1 1 -1 1];
-        F = chebfun2(f);
+        %F = chebfun2(f);
+        F = chebfun2(f,[500,500]);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 10:10:100;
+        %Afun = @(X) F*X;
+        rank_list = 1:1:100;
         g = @(x) x;
         filename = 'results/matern12';
         
@@ -102,10 +110,12 @@ for test_case = 1:5
         
         f = @(x,y) min(x,y) - x.*y/(2*pi);
         box = [0 2*pi 0 2*pi];
-        F = chebfun2(f,box);
+        %F = chebfun2(f,box);
+        F = chebfun2(f,box,[500,500]);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 10:10:100;
+        %Afun = @(X) F*X;
+        rank_list = 1:1:100;
         g = @(x) x./(x+1);
         filename = 'results/ode';
         
@@ -116,7 +126,7 @@ for test_case = 1:5
         [V3,Lambda3,~] = svd(chebfun2(@(x,y) k(x/pi-1,y/pi-1,0.01),box));
         covariance_cell = {{{V1},{Lambda1}},{{V2},{Lambda2}},{{V3},{Lambda3}}};
         
-        title_for_plot = 'Green''s functions';
+        title_for_plot = 'Green''s function';
         plot_type = 2;
         
     end
