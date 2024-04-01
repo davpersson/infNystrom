@@ -9,22 +9,32 @@ function [U,S] = nystrom(Afun,UK,SK,r)
 %   - U: Eigenfunctions of Nystrom approximation
 %   - S: Eigenvalues of Nystrom approximations
 
+% Use Algorithm 2.1 in https://epubs.siam.org/doi/pdf/10.1137/21M1466244
+% Or 16 in https://doi.org/10.1017/S0962492920000021
+
 %Generate Guassian process
 Omega = UK*diag(sqrt(diag(SK)))*randn(size(SK,1),r);
+Omega = orth(Omega);
 
 % Compute sketch and core matrix
 Y = Afun(Omega);
-M = Omega'*Y;
+nu = eps*norm(Y,'fro');
+Y_nu = Y + nu*Omega;
 
-% Compute eigenvalue decomposition of core matrix
-[V,D] = svd(M,'econ'); 
-D(D < 5e-16*D(1,1)) = 0; % Truncate very small eigenvalues to 0;
+try
+    x = Omega'*Y_nu;
+    % project onto symmetric matrix
+    x = 0.5*(x+x');
+    C = chol(x);
+catch
+    print("e")
+end
 
 % Compute B so that Nystrom approximation = B*B'
-B = Y*V*pinv(diag(sqrt(diag(D))));
+B = (C'\Y_nu')';
 
 %Obtain eigenvalue decomposition of Nystrom approximation
 [U,S,~] = svd(B);
-S = S^2;
+S = max(0,S.^2-nu*eye(size(S)));
 
 end
