@@ -19,7 +19,7 @@ for test_case = 1:5
         F = chebfun2(f);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 10:10:100;
+        rank_list = 1:1:100;
         g = @(x) x;
         filename = 'results/pretty_function';
         
@@ -42,7 +42,7 @@ for test_case = 1:5
         F = chebfun2(f);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 1:1:100;
+        rank_list = 10:10:100;
         g = @(x) x;
         filename = 'results/matern32';
         
@@ -105,7 +105,7 @@ for test_case = 1:5
         F = chebfun2(f,box);
         [U_true,S_true,~] = svd(F);
         Afun = @(X) U_true*(S_true*(U_true'*X));
-        rank_list = 1:1:100;
+        rank_list = 10:10:100;
         g = @(x) x./(x+1);
         filename = 'results/ode';
         
