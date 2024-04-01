@@ -1,4 +1,5 @@
-% Run this script to run the tests
+% Run this script to run the numerical experiments. It takes roughly 10
+% minutes. Run plotter_run.m to reproduce the plots. 
 
 clc
 clear
