@@ -82,7 +82,7 @@ print(append(filename,'_error'),'-depsc')
 end
 
 
-function plotter2(filename)
+function plotter2(filename,title_for_plot)
 addpath('results')
 load(filename)
 
