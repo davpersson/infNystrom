@@ -7,4 +7,4 @@ Run plotter_run to reproduce the figures for the numerical experiments. Run test
 
 ---------------------------------------------------------------------
 ### Reference
-[1] D. Persson, Nicolas Boullé, and D. Kressner. "Randomized Nyström approximation of Hilbert-Schmidt operators", 2024.
+[1] D. Persson, Nicolas Boullé, and D. Kressner. "Randomized Nyström approximation of non-negative self-adjoint operators", 2024.
