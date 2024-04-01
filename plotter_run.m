@@ -5,7 +5,7 @@ addpath('Other')
 addpath('results')
 
 
-for test_case = 1:6
+for test_case = 1:5
     
     if test_case == 1
         
