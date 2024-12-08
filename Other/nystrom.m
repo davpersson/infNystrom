@@ -21,20 +21,32 @@ Y = Afun(Omega);
 nu = eps*norm(Y,'fro');
 Y_nu = Y + nu*Omega;
 
-try
-    x = Omega'*Y_nu;
-    % project onto symmetric matrix
-    x = 0.5*(x+x');
-    C = chol(x);
-catch
-    print("e")
-end
+% try
+%     x = Omega'*Y_nu;
+%     % project onto symmetric matrix
+%     x = 0.5*(x+x');
+%     C = chol(x);
+% catch
+%     print("e")
+% end
+% 
+% % Compute B so that Nystrom approximation = B*B'
+% B = (C'\Y_nu')';
 
 % Compute B so that Nystrom approximation = B*B'
-B = (C'\Y_nu')';
+x = Omega'*Y_nu;
+x = 0.5*(x+x'); % project onto symmetric matrix
+[U,S,~] = svd(x,'econ');
+B = Y_nu*U*diag(sqrt(1./diag(S)));
 
 %Obtain eigenvalue decomposition of Nystrom approximation
-[U,S,~] = svd(B);
+if size(B,1) < inf
+    [U,S,~] = svd(B,'econ');
+else
+
+    [U,S,~] = svd(B);
+
+end
 S = max(0,S.^2-nu*eye(size(S)));
 
 end
