@@ -9,7 +9,7 @@ Run plotter_run_me.m to reproduce the figures for the numerical experiments. Run
 ### Reference
 [1] D. Persson, Nicolas Boullé, and D. Kressner. "Randomized Nyström approximation of non-negative self-adjoint operators", to appear in SIAM J. Math. Data Sci., 2025.
 
-## Citation
+### Citation
 If you use this repository, please cite it as:
 
 [![DOI](https://zenodo.org/badge/764049832.svg)](https://doi.org/10.5281/zenodo.15149157)
